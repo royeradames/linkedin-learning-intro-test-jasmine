@@ -1,12 +1,12 @@
 /**
- * Unit Testing: Setting up data with beforeEach challenge
- * 1. Add a new describe for the fullName
- * 2. Fully test the fullName get
- * 3. Use a nested beforeEach
+ * Unit Testing:
+ * 1. Use a spy and test the method getCodeName() fully
+ * 2. You will need to use spyOn and toHaveBeenCalledWith()
+ * 3. Hit; you will need to chain the spy
+ * example: spyOn(object, 'key').and.returnValue(value)
  */
 
-// const Person = require('./Person')
-// /Test Suite
+// Test Suite
 describe(`${Person.name}`, () => {
     let model
     describe('.getFullName', () => {
