@@ -10,7 +10,7 @@
 describe(`${Person.name}`, () => {
     let model
     describe('.getFullName', () => {
-        beforeEach(() =>  model = new Person({firstName: 'Royer', lastName: 'Adames', middleName: 'Gold'}))
+        beforeEach(() => model = new Person({firstName: 'Royer', lastName: 'Adames', middleName: 'Gold'}))
 
         it('returns the full name', () => {
             //arrange
@@ -39,7 +39,7 @@ describe(`${Person.name}`, () => {
         })
         it(`last name defaults to empty`, () => {
             // setup
-            const data = { lastName: null }
+            const data = {lastName: null}
 
             // act
             const model = new Person(data)
@@ -49,13 +49,39 @@ describe(`${Person.name}`, () => {
         })
         it(`middle name defaults to empty`, () => {
             // setup
-            const data = { middleName: null }
+            const data = {middleName: null}
 
             // act
             const model = new Person(data)
 
             // assert
             expect(model.middleName).toBe('')
+        })
+    });
+    describe('.getCodeName', () => {
+        beforeEach(() => model = new Person())
+
+        it('selected confirmed', () => {
+            //    setup
+            const expected = 'TESTING GOD!'
+            const input = true
+            const confirm = spyOn(window, 'confirm').and.returnValue(input)
+            //    act
+            const result = model.getCodeName()
+            //    assert
+            expect(confirm).toHaveBeenCalled()
+            expect(result).toBe(expected)
+        })
+        it('selected denied', () => {
+            //    setup
+            const expected = 'Scrub skipping tests in his best friend\'s ride!'
+            const input = false
+            const confirm = spyOn(window, 'confirm').and.returnValue(input)
+            //    act
+            const result = model.getCodeName()
+            //    assert
+            expect(confirm).toHaveBeenCalled()
+            expect(result).toBe(expected)
         })
     })
 })
