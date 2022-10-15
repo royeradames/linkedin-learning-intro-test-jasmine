@@ -1,12 +1,31 @@
 /**
- * Unit Testing: first test challenge
- * 1. Write a unit test for lastName and middleName to test its default values.
- * 2. Group all 3 units test with an appropriate description.
+ * Unit Testing: Setting up data with beforeEach challenge
+ * 1. Add a new describe for the fullName
+ * 2. Fully test the fullName get
+ * 3. Use a nested beforeEach
  */
 
 // const Person = require('./Person')
 // /Test Suite
 describe(`${Person.name}`, () => {
+    let model
+    describe('.getFullName', () => {
+        beforeEach(() =>  model = new Person({firstName: 'Royer', lastName: 'Adames', middleName: 'Gold'}))
+
+        it('returns the full name', () => {
+            //arrange
+            model.middleName = 'Golden'
+
+            // act
+            const result = model.getFullName()
+
+            // audit
+            const {firstName: fn, lastName: ln, middleName: mn} = model;
+
+            //assert
+            expect(result).toBe(`${fn} ${mn[0]} ${ln}`)
+        })
+    })
     describe('default values', () => {
         it('first name defaults to empty', () => {
             //    arrange
